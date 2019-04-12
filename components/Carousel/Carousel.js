@@ -26,11 +26,8 @@ class Carousel {
         }
         this.imgs.forEach(elem => {
             elem.updateStartingPoint();
-            elem.imgSlide(arr);
-            
+            elem.imgSlide(arr);    
         })        
-        console.log(this.currentIndex);
-
     }
 }
 
