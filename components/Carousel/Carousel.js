@@ -1,8 +1,23 @@
-class Carousel {
 
+class Carousel {
+    constructor(element, elementWidth) {
+        this.element = element;
+        this.width = elementWidth;
+        this.imgs = Array.from(this.element.querySelectorAll("img"));
+
+
+    }
+    slide(arr) {
+
+    }
 }
 
-let carousel = document.querySelector();
+let carousel = document.querySelector(".carousel");
+let carouselWidth = document.querySelector(".carousel").offsetWidth; //initial setting of carousel width
+carousel = new Carousel(carousel, carouselWidth);
+
+
+
 
 /* If You've gotten this far, you're on your own! Although we will give you some hints:
     1. You will need to grab a reference to the carousel, and in it grab the laft and right buttons
