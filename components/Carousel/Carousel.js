@@ -8,9 +8,11 @@ class Carousel {
         this.imgCount = this.imgs.length;
         window.addEventListener("resize", () => {
             this.width = document.querySelector(".carousel").offsetWidth;
+            //this.imgs.forEach(elem => elem.updateStartingPoint());
         })
         this.left = this.element.querySelector(".left-button");
         this.left.addEventListener("click", () => this.slide(-1));
+        
         this.right = this.element.querySelector(".right-button");
         this.right.addEventListener("click", () => this.slide(+1));
     }
@@ -19,10 +21,16 @@ class Carousel {
         this.currentIndex += arr;
         if(this.currentIndex >= this.imgCount) {
             this.currentIndex = 0;
-        } else if(this.currentIndex <= 0 ) {
+        } else if(this.currentIndex < 0 ) {
             this.currentIndex = this.imgCount-1;
         }
-        this.imgs.forEach(elem => elem.updateStartingPoint());
+        this.imgs.forEach(elem => {
+            elem.updateStartingPoint();
+            elem.imgSlide(arr);
+            
+        })        
+        console.log(this.currentIndex);
+
     }
 }
 
@@ -31,11 +39,19 @@ class CarouselImg {
         this.element = element;
         this.carousel = carousel;
         this.index = index;
-        this.startingPoint = (this.index - this.carousel.currentIndex) * this.carousel.width;
+        this.width = this.carousel.width;
+        this.startingPoint = (this.index) * this.carousel.width;
+        this.element.setAttribute("style", `margin-left:${this.startingPoint}px;`)
     }
     updateStartingPoint() {
-        this.startingPoint = (this.index - this.carousel.currentIndex) * this.carousel.width;
-        console.log(this.startingPoint);
+         this.width = this.carousel.width;
+         this.startingPoint = (this.index - this.carousel.currentIndex) * this.width;
+         //this.element.style.width=`${this.width}px`;    
+    }
+    imgSlide(arr) {
+        //let movement = arr * -1 * this.width;
+        this.element.setAttribute("style", `margin-left: ${this.startingPoint}px;`);
+        //this.element.setAttribute("style", `margin-left:${this.startingPoint}px;`)
     }
 }
 
