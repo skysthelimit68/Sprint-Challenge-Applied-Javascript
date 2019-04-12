@@ -3,12 +3,21 @@ class Carousel {
     constructor(element, elementWidth) {
         this.element = element;
         this.width = elementWidth;
-        this.imgs = Array.from(this.element.querySelectorAll("img"));
+        this.imgs = Array.from(this.element.querySelectorAll("img")).map(elem => new CarouselImg(elem));
+        this.imgCount = this.imgs.length;
+        
 
 
     }
     slide(arr) {
 
+    }
+}
+
+class CarouselImg {
+    constructor(element) {
+        this.element = element;
+        console.log(element);
     }
 }
 
